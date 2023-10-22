@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".budget_create"
+    android:background="@color/blue"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create budget"
+            android:textColor="@color/white"
+            android:fontFamily="@font/interbold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/btn_back_addINC"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clipToOutline="true"
+            android:background="@color/blue"
+            android:layout_marginLeft="20dp"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How much do you want to spend?"
+            android:textColor="@color/dimwhite"
+            android:fontFamily="@font/intersemibold"
+            android:layout_marginLeft="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+        <TextView
+            android:id="@+id/create_budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="$0"
+            android:textColor="@color/dimwhite"
+            android:fontFamily="@font/intermedium"
+            android:layout_marginLeft="20dp"
+            android:textSize="77dp"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="460dp"
+        android:background="@color/white"
+        >
+
+        <RelativeLayout
+            android:layout_width="343dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/input_box">
+
+            <EditText
+                android:id="@+id/cat_addbudget"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:text="Category"
+                android:layout_centerHorizontal="true"
+                />.
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btn_continue_addbudget"
+            android:text="continue"
+            android:fontFamily="@font/intermedium"
+            android:textColor="@color/white"
+            android:layout_width="343dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_larg_blue"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

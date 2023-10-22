@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".budget_detail">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail Budget"
+            android:fontFamily="@font/interbold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/btn_back_detailTRANS"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clipToOutline="true"
+            android:background="@color/white"
+            android:layout_marginLeft="15dp"
+
+            />
+
+        <Button
+            android:id="@+id/btn_delete_detailTRANS"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clipToOutline="true"
+            android:background="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+
+            />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        >
+        <RelativeLayout
+            android:layout_width="156dp"
+            android:layout_height="64dp"
+            android:background="@drawable/cat_budget"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            >
+            <RelativeLayout
+                android:layout_width="124dp"
+                android:layout_height="32dp"
+
+                >
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:srcCompat="@drawable/shopping" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shopping"
+                    android:fontFamily="@font/interbold"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remaining"
+                android:fontFamily="@font/interbold"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:id="@+id/detail_budget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="$0"
+                android:textColor="@color/black"
+                android:fontFamily="@font/intermedium"
+                android:gravity="center"
+                android:textSize="77dp"
+                />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginTop="150dp"
+                android:layout_width="311dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/progressbar"
+                android:layout_centerHorizontal="true"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_edit_budget"
+        android:text="Edit"
+        android:fontFamily="@font/intermedium"
+        android:textColor="@color/white"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_larg_blue"
+        />
+</RelativeLayout>

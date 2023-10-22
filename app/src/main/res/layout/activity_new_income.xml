@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".new_income"
+    android:background="@color/green"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Income"
+            android:textColor="@color/white"
+            android:fontFamily="@font/interbold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/btn_back_addINC"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clipToOutline="true"
+            android:background="@color/green"
+            android:layout_marginLeft="15dp"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How much?"
+            android:textColor="@color/dimwhite"
+            android:fontFamily="@font/interbold"
+            android:layout_marginLeft="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+        <TextView
+            android:id="@+id/add_new_INC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="$0"
+            android:textColor="@color/dimwhite"
+            android:fontFamily="@font/intermedium"
+            android:layout_marginLeft="20dp"
+            android:textSize="77dp"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="370dp"
+        android:background="@color/white"
+        >
+
+        <RelativeLayout
+            android:id="@+id/input_cat_addINC"
+            android:layout_width="343dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/input_box">
+
+            <EditText
+                android:id="@+id/cat_addINC"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:text="Category"
+                android:layout_centerHorizontal="true"
+                />.
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/input_des_addINC"
+            android:layout_width="343dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/input_box" >
+
+            <EditText
+                android:id="@+id/des_addINC"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:text="Description"
+                android:layout_centerHorizontal="true"
+                />.
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_continue_addINC"
+            android:text="continue"
+            android:fontFamily="@font/intermedium"
+            android:textColor="@color/white"
+            android:layout_width="343dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_larg_blue"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

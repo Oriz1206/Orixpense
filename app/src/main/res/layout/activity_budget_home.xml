@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".detail_transfer"
+    android:background="@color/blue"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        >
+
+        <TextView
+            android:id="@+id/budget_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="June"
+            android:textColor="@color/white"
+            android:fontFamily="@font/intersemibold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/btn_back_budgetdate"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clipToOutline="true"
+            android:background="@color/blue"
+            android:layout_marginLeft="20dp"
+
+            />
+
+        <Button
+            android:id="@+id/btn_forward_budgetdate"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clipToOutline="true"
+            android:background="@color/blue"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="140dp"
+        android:background="@color/white"
+        >
+
+
+        <Button
+            android:id="@+id/btn_create_budget"
+            android:text="Create a budget"
+            android:fontFamily="@font/intermedium"
+            android:textColor="@color/white"
+            android:layout_width="343dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_larg_blue"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

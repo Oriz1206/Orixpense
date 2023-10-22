@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".forgot_pass_emailsent">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/emailsent"
+        android:layout_marginTop="50dp"
+
+        />
+
+    <TextView
+        android:layout_width="343dp"
+        android:layout_height="116dp"
+        android:text="Your email is on the way"
+        android:fontFamily="@font/interbold"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="300dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+
+        />
+
+    <TextView
+        android:id="@+id/by_signing_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="400dp"
+        android:fontFamily="@font/intermedium"
+        android:textSize="20sp"
+        android:text="@string/checkemail"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        />
+
+
+    <Button
+        android:id="@+id/btn_back_to_login"
+        android:text="Back to login"
+        android:fontFamily="@font/intermedium"
+        android:textColor="@color/white"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="525dp"
+        android:background="@drawable/button_larg_blue"
+
+        />
+</RelativeLayout>

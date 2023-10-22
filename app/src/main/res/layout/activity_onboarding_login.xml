@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginActivity"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:fontFamily="@font/interbold"
+        android:layout_marginTop="44dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:gravity="center"
+
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/input_field_name"
+        android:layout_width="343dp"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/input_box">
+
+        <EditText
+            android:id="@+id/email_login"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:hint="@string/email"
+            android:layout_centerHorizontal="true"
+            />.
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/input_field_email"
+        android:layout_width="343dp"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:background="@drawable/input_box" >
+
+        <EditText
+            android:id="@+id/password_login"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:hint="@string/pass"
+            android:layout_centerHorizontal="true"
+            />.
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:text="@string/login"
+        android:fontFamily="@font/intermedium"
+        android:textColor="@color/white"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/button_larg_blue"
+        />
+
+    <TextView
+        android:id="@+id/forgot_pass"
+        android:layout_width="157dp"
+        android:layout_height="22dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="19sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="429dp"
+        android:text="@string/forgot_pass"
+        />
+
+    <TextView
+        android:id="@+id/dont_have_acc"
+        android:layout_width="244dp"
+        android:layout_height="19dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="500dp"
+        android:text="@string/don_t_have_an_account_yet_sign_up"
+        />
+
+
+
+</RelativeLayout>

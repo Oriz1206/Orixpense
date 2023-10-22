@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="detailEXP_date" type="id" />
+    <item name="datailINC_date" type="id" />
+    <item name="datailTRANS_date" type="id" />
+</resources>

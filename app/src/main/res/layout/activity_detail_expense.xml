@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".detail_expense"
+    android:background="@color/red"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail Transaction"
+            android:textColor="@color/white"
+            android:fontFamily="@font/intersemibold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/btn_back_detailEXP"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clipToOutline="true"
+            android:background="@color/red"
+            android:layout_marginLeft="15dp"
+
+            />
+
+        <Button
+            android:id="@+id/btn_delete_detailEXP"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clipToOutline="true"
+            android:background="@color/red"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp">
+
+        <TextView
+            android:id="@+id/Balance_detailEXP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$123"
+            android:fontFamily="@font/interbold"
+            android:textColor="@color/white"
+            android:textSize="77dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/cat_detailEXP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="Buy some"
+            android:fontFamily="@font/interregular"
+            android:textColor="@color/dimwhite"
+            android:textSize="19dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:id="@id/detailEXP_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:text="12/6/2023"
+            android:fontFamily="@font/interregular"
+            android:textColor="@color/dimwhite"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            />
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="270dp"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Description"
+            android:fontFamily="@font/intersemibold"
+            android:textColor="@color/gray"
+            android:textSize="19dp"
+            android:layout_marginLeft="25dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:id="@+id/des_detailEXP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:text="Sua"
+            android:fontFamily="@font/intersemibold"
+            android:textColor="@color/black"
+            android:textSize="19dp"
+            android:layout_marginLeft="25dp"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <Button
+            android:id="@+id/btn_edit_detailEXP"
+            android:text="Edit"
+            android:fontFamily="@font/intermedium"
+            android:textColor="@color/white"
+            android:layout_width="343dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_larg_blue"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

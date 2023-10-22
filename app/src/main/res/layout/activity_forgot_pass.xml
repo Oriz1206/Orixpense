@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ForgotPass">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:fontFamily="@font/interbold"
+        android:layout_marginTop="44dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:gravity="center"
+
+        />
+    <TextView
+        android:layout_width="343dp"
+        android:layout_height="116dp"
+        android:text="@string/forgot_P_txt"
+        android:fontFamily="@font/interbold"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="177dp"
+        android:layout_centerHorizontal="true"
+
+        />
+
+    <RelativeLayout
+        android:id="@+id/input_field_name"
+        android:layout_width="343dp"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="339dp"
+        android:background="@drawable/input_box">
+
+        <EditText
+            android:id="@+id/email_login"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:hint="@string/email"
+            android:layout_centerHorizontal="true"
+            />.
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_continue_forgotP"
+        android:text="continue"
+        android:fontFamily="@font/intermedium"
+        android:textColor="@color/white"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="427dp"
+        android:background="@drawable/button_larg_blue"
+        />
+
+</RelativeLayout>
