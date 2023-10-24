@@ -4,18 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity"
+    tools:context=".Onboarding_login_Activity"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
     >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:fontFamily="@font/interbold"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="44dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:fontFamily="@font/interbold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"
+            android:textColor="@color/black"
+            />
 
-        />
+        <TextView
+            android:id="@+id/btn_back_login"
+            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:textColor="@color/white"
+            android:background="@drawable/turn_back_icon"
+            />
+
+    </RelativeLayout>
+
 
 
     <RelativeLayout
@@ -33,6 +51,9 @@
             android:layout_height="match_parent"
             android:hint="@string/email"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:textColorHint="@color/gray"
             />.
     </RelativeLayout>
 
@@ -51,6 +72,10 @@
             android:layout_height="match_parent"
             android:hint="@string/pass"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:textColorHint="@color/gray"
+            android:password="true"
             />.
     </RelativeLayout>
 
@@ -78,6 +103,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="429dp"
         android:text="@string/forgot_pass"
+        android:textColor="@color/gray"
+
         />
 
     <TextView
@@ -89,6 +116,8 @@
         android:gravity="center_horizontal|center_vertical"
         android:layout_marginTop="500dp"
         android:text="@string/don_t_have_an_account_yet_sign_up"
+        android:textColor="@color/gray"
+
         />
 
 

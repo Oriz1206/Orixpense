@@ -5,19 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Onboarding_signup_Activity"
+    android:background="@color/white"
     >
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signup"
-        android:fontFamily="@font/interbold"
         android:layout_marginTop="44dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/signup"
+            android:textColor="@color/black"
+            android:fontFamily="@font/interbold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/btn_back_signup"
+            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:textColor="@color/white"
+            android:background="@drawable/turn_back_icon"
+            />
 
+    </RelativeLayout>
 
-        />
 
     <RelativeLayout
         android:id="@+id/input_field_name"
@@ -33,7 +48,10 @@
             android:layout_width="320dp"
             android:layout_height="match_parent"
             android:hint="@string/name"
+            android:textColor="@color/black"
             android:layout_centerHorizontal="true"
+            android:padding="15dp"
+            android:textColorHint="@color/gray"
 
             />
     </RelativeLayout>
@@ -52,7 +70,11 @@
             android:layout_width="320dp"
             android:layout_height="match_parent"
             android:hint="@string/email"
+            android:textColor="@color/black"
             android:layout_centerHorizontal="true"
+            android:padding="15dp"
+            android:textColorHint="@color/gray"
+
             />.
     </RelativeLayout>
 
@@ -71,37 +93,12 @@
             android:layout_width="320dp"
             android:layout_height="match_parent"
             android:hint="@string/pass"
+            android:textColor="@color/black"
             android:layout_centerHorizontal="true"
+            android:padding="15dp"
+            android:textColorHint="@color/gray"
+            android:password="true"
             />.
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="343dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="397dp">
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clipToOutline="true"
-
-            />
-
-
-        <TextView
-            android:id="@+id/by_signing_"
-            android:layout_width="291dp"
-            android:layout_height="36dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="30dp"
-            android:layout_alignParentTop="true"
-            android:text="@string/by_signing_"
-            android:lineSpacingExtra="1sp"
-            android:gravity="center_vertical"
-            />
 
     </RelativeLayout>
 
@@ -128,6 +125,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:layout_marginTop="590dp"
         android:text="@string/already_hav"
+        android:textColor="@color/gray"
         />
 
 

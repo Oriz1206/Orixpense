@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home_Fra">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Home"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            >
+            <Spinner
+                android:id="@+id/month_dropbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="12"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Balance"
+                android:fontFamily="@font/interlight"
+                android:layout_marginTop="50dp"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:textColor="@color/gray"
+                />
+
+            <TextView
+                android:id="@+id/Balance"
+                android:layout_width="328dp"
+                android:layout_height="58dp"
+                android:text="$0"
+                android:fontFamily="@font/interbold"
+                android:textColor="@color/black"
+                android:layout_marginTop="75dp"
+                android:textSize="42dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                >
+                <RelativeLayout
+                    android:layout_width="164dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="24dp"
+                    android:background="@drawable/income_home_show"
+                    >
+                    <RelativeLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/home_inc_exp_icon"
+                        android:layout_marginLeft="16dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        >
+                        <View
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/income_home_icon"
+                            />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Income"
+                            android:textColor="@color/dimwhite"
+                            android:textSize="16dp"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/home_INC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="$0"
+                            android:textSize="26dp"
+                            android:textColor="@color/white"
+                            />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="164dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="24dp"
+                    android:background="@drawable/expense_home_show"
+                    >
+                    <RelativeLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/home_inc_exp_icon"
+                        android:layout_marginLeft="16dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        >
+                        <View
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/expense_home_icon"
+
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_centerVertical="true">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expense"
+                            android:textColor="@color/dimwhite"
+                            android:textSize="16dp"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/home_EXP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="$0"
+                            android:textSize="26dp"
+                            android:textColor="@color/white"
+                            />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="320dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_centerVertical="true"
+                android:text="Recent Transaction"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/interbold"
+                android:textSize="22sp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="78dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/home_see_all"
+                android:text="see all"
+                android:fontFamily="@font/interbold"
+                android:textColor="@color/blue"
+
+                />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="370dp"
+            >
+
+            <ListView
+                android:id="@+id/home_trans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

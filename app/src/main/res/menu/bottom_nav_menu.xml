@@ -2,27 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/home_nav"
         android:title="Home"
+        android:enabled="true"
         android:icon="@drawable/nav_home"/>
 
     <item
-        android:id="@+id/transaction"
+        android:id="@+id/transaction_nav"
         android:title="Transaction"
+        android:enabled="true"
         android:icon="@drawable/nav_trans"/>
 
     <item
-        android:id="@+id/fab"
-        android:title=""
-        android:enabled="true"/>
-
-    <item
-        android:id="@+id/budget"
+        android:id="@+id/budget_nav"
         android:title="Budget"
+        android:enabled="true"
         android:icon="@drawable/nav_budget"/>
 
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profile_nav"
         android:title="Profile"
+        android:enabled="true"
         android:icon="@drawable/nav_profile"/>
 </menu>

@@ -1,11 +1,15 @@
 plugins {
-    id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.example.orixpense"
-    compileSdk = 33
+    buildToolsVersion = "34.0.0"
+    compileSdk = 34
+
+
 
     defaultConfig {
         applicationId = "com.example.orixpense"
@@ -38,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -47,9 +52,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildFeatures{
-        viewBinding = true
-    }
+
 }
 
 dependencies {
@@ -76,4 +79,27 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation ("me.relex:circleindicator:2.1.6")
+    implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+
+    implementation ("com.google.firebase:firebase-database:20.0.0")
+    implementation ("com.google.firebase:firebase-auth:20.0.1")
+    implementation ("com.google.firebase:firebase-core:20.0.0")
+    implementation ("com.firebaseui:firebase-ui-database:8.0.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("com.google.android.material:material:1.3.0-alpha03")
+    implementation ("com.google.android.material:material:1.3.0")
+    implementation("androidx.navigation:navigation-fragment:2.3.5")
+    implementation("androidx.navigation:navigation-ui:2.3.5")
+
+
+
+
+
+    androidTestImplementation ("androidx.test:runner:1.4.0")
+    androidTestImplementation ("androidx.test:rules:1.4.0")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
+
+
+
 }

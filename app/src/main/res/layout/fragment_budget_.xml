@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".detail_transfer"
+    tools:context=".budget_Fra"
     android:background="@color/blue"
     >
     <RelativeLayout
@@ -23,40 +22,54 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:gravity="center"
             />
-        <Button
+        <TextView
             android:id="@+id/btn_back_budgetdate"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clipToOutline="true"
-            android:background="@color/blue"
+            android:background="@drawable/arrow_back"
             android:layout_marginLeft="20dp"
 
             />
 
-        <Button
+        <TextView
             android:id="@+id/btn_forward_budgetdate"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clipToOutline="true"
-            android:background="@color/blue"
+            android:background="@drawable/arrow_next"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
 
             />
     </RelativeLayout>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="140dp"
         android:background="@color/white"
         >
+        <ListView
+            android:id="@+id/view_budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="620dp"
+        android:background="@color/white"
+        >
 
 
-        <Button
+        <TextView
+
             android:id="@+id/btn_create_budget"
             android:text="Create a budget"
             android:fontFamily="@font/intermedium"
+            android:gravity="center"
+            android:textSize="20dp"
             android:textColor="@color/white"
             android:layout_width="343dp"
             android:layout_height="wrap_content"
@@ -64,9 +77,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="30dp"
             android:background="@drawable/button_larg_blue"
+            android:backgroundTint="@color/blue"
             />
 
 
     </RelativeLayout>
 
-</RelativeLayout>
+</FrameLayout>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForgotPass">
+    tools:context=".ForgotPass"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         android:layout_marginTop="44dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:gravity="center"
+        android:textColor="@color/black"
 
         />
     <TextView
@@ -38,11 +40,14 @@
         android:background="@drawable/input_box">
 
         <EditText
-            android:id="@+id/email_login"
+            android:id="@+id/sent_email"
             android:layout_width="320dp"
             android:layout_height="match_parent"
             android:hint="@string/email"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:textColorHint="@color/gray"
             />.
     </RelativeLayout>
 

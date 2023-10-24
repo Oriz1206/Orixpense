@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="5dp"
+    android:layout_margin="2dp"
+    app:cardElevation="5dp"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/trans_box"
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="86dp"
+                >
+                <TextView
+                    android:id="@+id/cat_show_INC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:fontFamily="@font/intersemibold"
+                    android:textSize="19dp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:id="@+id/des_show_INC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:fontFamily="@font/intermedium"
+                    android:textColor="@color/gray"
+                    android:layout_below="@+id/cat_show_INC"
+                    android:layout_marginTop="7dp"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                >
+                <TextView
+                    android:id="@+id/show_INC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+$0"
+                    android:fontFamily="@font/intersemibold"
+                    android:textSize="19dp"
+                    android:textColor="@color/green"/>
+                <TextView
+                    android:id="@+id/date_show_INC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:fontFamily="@font/intermedium"
+                    android:textColor="@color/gray"
+                    android:layout_below="@+id/show_INC"
+                    android:layout_marginTop="7dp"
+                    />
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
