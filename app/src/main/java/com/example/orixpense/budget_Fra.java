@@ -50,13 +50,16 @@ public class budget_Fra extends Fragment {
         Log.d("budget_Fra", "onCreateView called");
         View view = inflater.inflate(R.layout.fragment_budget_, container, false);
 
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
         BudgetDB = FirebaseDatabase.getInstance().getReference().child("Budget").child(uid);
         recyclerView = view.findViewById(R.id.view_budget);
+        recyclerView.setVisibility(View.GONE);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         recyclerView.setHasFixedSize(true);
