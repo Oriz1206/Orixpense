@@ -39,6 +39,7 @@ public class home_Fra extends Fragment {
     private TextView totalIncome;
     private TextView totalExpense;
     private TextView balance;
+    private TextView btn_see_all;
     private DatabaseReference mIncomeDB;
     private DatabaseReference mExpenseDB;
     private FirebaseAuth mAuth;
@@ -75,6 +76,7 @@ public class home_Fra extends Fragment {
         totalIncome = view.findViewById(R.id.home_INC);
         totalExpense = view.findViewById(R.id.home_EXP);
         balance = view.findViewById(R.id.Balance);
+        btn_see_all = view.findViewById(R.id.see_all_trans);
 
 
         mAuth = FirebaseAuth.getInstance();
