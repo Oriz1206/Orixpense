@@ -52,10 +52,10 @@ public class budget_Fra extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
+        String uid = "7HfvCXWJsOfn6uGhe5VDKdohPIm2";
         BudgetDB = FirebaseDatabase.getInstance().getReference().child("Budget").child(uid);
         recyclerView = view.findViewById(R.id.view_budget);
-        recyclerView.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),LinearLayoutManager.VERTICAL,false));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -86,7 +86,7 @@ public class budget_Fra extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     dataReceived = true;
-                    Log.d("Budget_Fra", "Dữ liệu đã được nhận từ Firebase");
+                    Log.d("Budget_Fra", "Dữ liệu đã được nhận từ Firebase" + String.valueOf(dataSnapshot));
                 } else {
                     dataReceived = false;
                     Log.d("Budget_Fra", "Dữ liệu không được nhận từ Firebase");
@@ -100,9 +100,8 @@ public class budget_Fra extends Fragment {
             }
         });
 
-        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>()
-                .setQuery(BudgetDB, Data.class)
-                .build();
+        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>().setQuery(BudgetDB, Data.class).build();
+
         adapter =new FirebaseRecyclerAdapter<Data, ViewHolder>(options) {
             @NonNull
             @Override

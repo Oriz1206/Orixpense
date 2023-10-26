@@ -98,4 +98,5 @@ public class Onboarding_login_Activity extends AppCompatActivity {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+
 }
