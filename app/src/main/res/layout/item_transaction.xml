@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="5dp"
-    android:layout_margin="2dp"
-    app:cardElevation="5dp"
+    android:background="@color/white"
     >
     <LinearLayout
         android:layout_width="wrap_content"
@@ -14,11 +12,32 @@
         android:orientation="vertical"
 
         >
+
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/trans_box"
             >
+
+            <RelativeLayout
+                android:id="@+id/item_trans_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/home_inc_exp_icon"
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+
+                >
+                <View
+                    android:id="@+id/item_trans_icon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    />
+
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -27,7 +46,7 @@
                 android:layout_marginLeft="86dp"
                 >
                 <TextView
-                    android:id="@+id/cat_show_EXP"
+                    android:id="@+id/cat_show"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category"
@@ -37,16 +56,15 @@
                     />
 
                 <TextView
-                    android:id="@+id/des_show_EXP"
+                    android:id="@+id/des_show"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Description"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:fontFamily="@font/intermedium"
                     android:textColor="@color/gray"
-                    android:layout_below="@+id/cat_show_EXP"
+                    android:layout_below="@+id/cat_show"
                     android:layout_marginTop="7dp"
-
                     />
             </RelativeLayout>
 
@@ -59,24 +77,23 @@
                 android:layout_marginRight="20dp"
                 >
                 <TextView
-                    android:id="@+id/show_EXP"
+                    android:id="@+id/show"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-$0"
+                    android:text="+$0"
                     android:fontFamily="@font/intersemibold"
                     android:textSize="19dp"
-                    android:textColor="@color/red"/>
+                    />
                 <TextView
-                    android:id="@+id/date_show_EXP"
+                    android:id="@+id/date_show"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:fontFamily="@font/intermedium"
                     android:textColor="@color/gray"
-                    android:layout_below="@+id/show_EXP"
+                    android:layout_below="@+id/show"
                     android:layout_marginTop="7dp"
-
                     />
             </RelativeLayout>
 

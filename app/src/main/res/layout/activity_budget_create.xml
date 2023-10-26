@@ -47,15 +47,16 @@
             android:layout_marginLeft="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             />
-        <TextView
-            android:id="@+id/create_budget"
+        <EditText
+            android:id="@+id/amount_budget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="$0"
+            android:hint="$"
             android:textColor="@color/dimwhite"
             android:fontFamily="@font/intermedium"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:textSize="77dp"
             />
 
@@ -79,15 +80,31 @@
                 android:id="@+id/cat_addbudget"
                 android:layout_width="320dp"
                 android:layout_height="match_parent"
-                android:text="Category"
+                android:hint="Category"
                 android:layout_centerHorizontal="true"
-                />.
+                android:textColor="@color/black"
+                android:padding="15dp"
+                android:textColorHint="@color/gray"
+                />
+
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/btn_save_addbudget"
+            android:text="save"
+            android:fontFamily="@font/intermedium"
+            android:textColor="@color/white"
+            android:layout_width="343dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="110dp"
+            android:background="@drawable/button_larg_blue"
+            />
 
         <Button
-            android:id="@+id/btn_continue_addbudget"
-            android:text="continue"
+            android:id="@+id/btn_cancle_addBudget"
+            android:text="cancle"
             android:fontFamily="@font/intermedium"
             android:textColor="@color/white"
             android:layout_width="343dp"
@@ -95,7 +112,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/button_larg_blue"
+            android:background="@drawable/button_larg_red"
             />
 
 

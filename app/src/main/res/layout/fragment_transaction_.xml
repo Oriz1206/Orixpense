@@ -30,9 +30,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:id="@+id/recycler_id"
-        android:layout_height="match_parent"
+        android:id="@+id/recycler_trans"
+        android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_transaction"
+
         >
 
     </androidx.recyclerview.widget.RecyclerView>

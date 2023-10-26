@@ -2,11 +2,23 @@ package com.example.orixpense;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.orixpense.Model.Data;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,8 +27,7 @@ import android.view.ViewGroup;
  */
 public class home_Fra extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -24,19 +35,21 @@ public class home_Fra extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    //total
+    private TextView totalIncome;
+    private TextView totalExpense;
+    private TextView balance;
+    private DatabaseReference mIncomeDB;
+    private DatabaseReference mExpenseDB;
+    private FirebaseAuth mAuth;
+    private int INC;
+    private int EXP;
+
     public home_Fra() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment home_Fra.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static home_Fra newInstance(String param1, String param2) {
         home_Fra fragment = new home_Fra();
         Bundle args = new Bundle();
@@ -58,7 +71,72 @@ public class home_Fra extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_, container, false);
+        totalIncome = view.findViewById(R.id.home_INC);
+        totalExpense = view.findViewById(R.id.home_EXP);
+        balance = view.findViewById(R.id.Balance);
+
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+        mIncomeDB = FirebaseDatabase.getInstance().getReference().child("Income").child(uid);
+        mExpenseDB = FirebaseDatabase.getInstance().getReference().child("Expense").child(uid);
+
+        mIncomeDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int totalsum = 0;
+                for(DataSnapshot mysnap:snapshot.getChildren()){
+                    Data data = mysnap.getValue(Data.class);
+                    totalsum += data.getAmount();
+                    String stResult = String.valueOf(totalsum);
+                    totalIncome.setText("$" + String.valueOf(stResult));
+                    INC = totalsum;
+                    updateBalance();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        mExpenseDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int totalsum = 0;
+                for(DataSnapshot mysnap:snapshot.getChildren()){
+                    Data data = mysnap.getValue(Data.class);
+                    totalsum += data.getAmount();
+                    String stResult = String.valueOf(totalsum);
+                    totalExpense.setText("$" + String.valueOf(stResult));
+                    EXP = totalsum;
+                    updateBalance();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+        return view;
     }
+    private void updateBalance() {
+        if (getContext() != null) {
+            if ((INC - EXP) >= 0) {
+                balance.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
+            } else {
+                balance.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+            }
+            balance.setText("$" + String.valueOf(INC - EXP));
+        }
+    }
+
 }
