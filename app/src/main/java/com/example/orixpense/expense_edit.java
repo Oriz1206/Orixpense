@@ -18,42 +18,46 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class budget_edit extends AppCompatActivity {
-    private EditText editBudget;
+public class expense_edit extends AppCompatActivity {
+    private EditText editAmount;
     private EditText editCategory;
-    private Button btnSaveEditBudget;
-    private DatabaseReference budgetRef;
+    private EditText editDescription;
+    private Button btnSaveEditExpense;
+    private DatabaseReference expenseRef;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_budget_edit);
+        setContentView(R.layout.activity_expense_edit);
 
-        // Nhận ID của ngân sách từ Intent
-        String budgetId = getIntent().getStringExtra("budget_id");
+        // Nhận ID của khoản chi tiêu từ Intent
+        String expenseId = getIntent().getStringExtra("expense_id");
 
         // Khởi tạo FirebaseAuth và DatabaseReference
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
-        budgetRef = FirebaseDatabase.getInstance().getReference().child("Budget").child(uid).child(budgetId);
+        expenseRef = FirebaseDatabase.getInstance().getReference().child("Expense").child(uid).child(expenseId);
 
         // Kết nối các thành phần giao diện
-        editBudget = findViewById(R.id.edit_budget);
-        editCategory = findViewById(R.id.cat_editbudget);
-        btnSaveEditBudget = findViewById(R.id.btn_save_editbudget);
+        editAmount = findViewById(R.id.edit_amount_EXP);
+        editCategory = findViewById(R.id.cat_editEXP);
+        editDescription = findViewById(R.id.des_editEXP);
+        btnSaveEditExpense = findViewById(R.id.btn_save_editEXP);
 
-        // Lấy thông tin ngân sách từ Firebase và hiển thị lên EditText
-        budgetRef.addValueEventListener(new ValueEventListener() {
+        // Lấy thông tin khoản chi tiêu từ Firebase và hiển thị lên EditText
+        expenseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String category = dataSnapshot.child("category").getValue(String.class);
+                    String description = dataSnapshot.child("description").getValue(String.class);
                     int amount = dataSnapshot.child("amount").getValue(Integer.class);
 
                     editCategory.setText(category);
-                    editBudget.setText(String.valueOf(amount));
+                    editDescription.setText(description);
+                    editAmount.setText(String.valueOf(amount));
                 }
             }
 
@@ -63,20 +67,22 @@ public class budget_edit extends AppCompatActivity {
             }
         });
 
-        btnSaveEditBudget.setOnClickListener(new View.OnClickListener() {
+        btnSaveEditExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Lấy giá trị mới từ EditText
-                String newBudget = editBudget.getText().toString();
+                String newAmount = editAmount.getText().toString();
                 String newCategory = editCategory.getText().toString();
+                String newDescription = editDescription.getText().toString();
 
-                // Kiểm tra xem các giá trị có hợp lệ không (ví dụ: newBudget là số dương)
+                // Kiểm tra xem các giá trị có hợp lệ không (ví dụ: newAmount là số dương)
 
                 // Cập nhật dữ liệu lên Firebase
-                budgetRef.child("amount").setValue(Integer.parseInt(newBudget));
-                budgetRef.child("category").setValue(newCategory);
+                expenseRef.child("amount").setValue(Integer.parseInt(newAmount));
+                expenseRef.child("category").setValue(newCategory);
+                expenseRef.child("description").setValue(newDescription);
 
-                Toast.makeText(budget_edit.this, "Dữ liệu đã được cập nhật!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(expense_edit.this, "Dữ liệu đã được cập nhật!", Toast.LENGTH_SHORT).show();
 
                 finish(); // Sau khi cập nhật, đóng Activity
             }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".budget_edit"
-    android:background="@color/blue"
+    tools:context=".income_edit"
+    android:background="@color/green"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,20 +16,20 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit budget"
+            android:text="Income"
             android:textColor="@color/white"
             android:fontFamily="@font/interbold"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:gravity="center"
             />
+
         <TextView
-            android:id="@+id/btn_back_editbudget"
-            android:layout_width="30dp"
-            android:layout_height="21dp"
-            android:clipToOutline="true"
-            android:background="@drawable/arrow_top_back_icon"
+            android:id="@+id/btn_back_editINC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_centerVertical="true"
+            android:background="@drawable/arrow_top_back_icon"
+            android:clipToOutline="true"
 
             />
     </RelativeLayout>
@@ -37,39 +37,41 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="230dp">
+        android:layout_marginTop="130dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="How much do you want to spend?"
+            android:text="How much?"
             android:textColor="@color/dimwhite"
-            android:fontFamily="@font/intersemibold"
+            android:fontFamily="@font/interbold"
             android:layout_marginLeft="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             />
-
         <EditText
-            android:id="@+id/edit_budget"
+            android:id="@+id/edit_amount_INC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/intermedium"
             android:hint="$"
             android:textColor="@color/dimwhite"
-            android:textSize="77dp" />
+            android:fontFamily="@font/intermedium"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="77dp"
+            android:inputType="number"
+            />
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="460dp"
+        android:layout_marginTop="370dp"
         android:background="@color/white"
         >
 
         <RelativeLayout
+            android:id="@+id/input_cat_addINC"
             android:layout_width="343dp"
             android:layout_height="56dp"
             android:layout_alignParentTop="true"
@@ -78,20 +80,38 @@
             android:background="@drawable/input_box">
 
             <EditText
-                android:id="@+id/cat_editbudget"
+                android:id="@+id/cat_editINC"
                 android:layout_width="320dp"
                 android:layout_height="match_parent"
                 android:hint="Category"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/black"
                 android:padding="15dp"
-                android:textColorHint="@color/gray"
-                />
+                android:textColorHint="@color/gray"                />.
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/input_des_addINC"
+            android:layout_width="343dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/input_box" >
+
+            <EditText
+                android:id="@+id/edit_addINC"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:hint="Description"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:padding="15dp"
+                android:textColorHint="@color/gray"                />.
+        </RelativeLayout>
 
         <Button
-            android:id="@+id/btn_save_editbudget"
+            android:id="@+id/btn_save_editINC"
             android:text="save"
             android:fontFamily="@font/intermedium"
             android:textColor="@color/white"
@@ -103,8 +123,9 @@
             android:background="@drawable/button_larg_blue"
             />
 
+
         <Button
-            android:id="@+id/btn_cancle_editBudget"
+            android:id="@+id/btn_cancle_editINC"
             android:text="cancle"
             android:fontFamily="@font/intermedium"
             android:textColor="@color/white"

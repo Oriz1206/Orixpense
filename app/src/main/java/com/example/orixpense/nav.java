@@ -128,12 +128,12 @@ public class nav extends AppCompatActivity {
                     return true;
                 } else if (itemId == R.id.transaction_nav) {
                     setFragment(transactionFra);
-                    btn_ft_main.setVisibility(View.VISIBLE);
-                    btn_ft_INC.setVisibility(View.VISIBLE);
-                    btn_ft_EXP.setVisibility(View.VISIBLE);
+                    btn_ft_main.setVisibility(View.GONE);
+                    btn_ft_INC.setVisibility(View.GONE);
+                    btn_ft_EXP.setVisibility(View.GONE);
 
-                    ft_INC.setVisibility(View.VISIBLE);
-                    ft_EXP.setVisibility(View.VISIBLE);
+                    ft_INC.setVisibility(View.GONE);
+                    ft_EXP.setVisibility(View.GONE);
 
                     return true;
                 } else if (itemId == R.id.budget_nav) {

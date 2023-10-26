@@ -94,6 +94,7 @@ public class New_Expense extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(getApplicationContext(),"Added!",Toast.LENGTH_SHORT).show();
+
                     }
                 });
                 ExpneseDB.child(id).setValue(data).addOnFailureListener(new OnFailureListener() {

@@ -32,7 +32,6 @@ public class budget_Fra extends Fragment {
     private DatabaseReference BudgetDB;
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter adapter;
-    private boolean dataReceived = false;
 
     private TextView btn_create_budget;
 
@@ -47,7 +46,7 @@ public class budget_Fra extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.d("budget_Fra", "onCreateView called");
+
         View view = inflater.inflate(R.layout.fragment_budget_, container, false);
 
         mAuth = FirebaseAuth.getInstance();
@@ -83,17 +82,26 @@ public class budget_Fra extends Fragment {
             public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.item_budget, parent, false);
-                Log.d("Budget_Fra", "ViewHolder onCreateViewHolder");
+
+
                 return new ViewHolder(view);
             }
 
             @Override
             protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Data model) {
-                // Bind data to the ViewHolder
-                holder.setCat(model.getCategory()); // Assuming you have a getCat method in your Data class
-                holder.setAmount(model.getAmount()); // Assuming you have a getAmount method in your Data class
-                Log.d("YourAdapter", "onBindViewHolder called for position: " + position);
-                Log.d("YourAdapter", "Data for this position - Category: " + model.getCategory() + ", Amount: " + model.getAmount());
+                holder.setCat(model.getCategory());
+                holder.setAmount(model.getAmount());
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), budget_detail.class);
+                        intent.putExtra("budget_id", getRef(position).getKey()); // Truyền ID của ngân sách
+                        startActivity(intent);
+                    }
+                });
+
+
             }
         };
         return view;
@@ -103,61 +111,8 @@ public class budget_Fra extends Fragment {
     public void onStart() {
         super.onStart();
 
-//
-        BudgetDB.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    dataReceived = true;
-                    Log.d("Budget_Fra", "Dữ liệu đã được nhận từ Firebase" + String.valueOf(dataSnapshot));
-                } else {
-                    dataReceived = false;
-                    Log.d("Budget_Fra", "Dữ liệu không được nhận từ Firebase");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                dataReceived = false;
-                Log.d("Budget_Fra", "Dữ liệu không được nhận từ Firebase");
-            }
-        });
-
-//        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>().setQuery(BudgetDB, Data.class).build();
-//
-//        adapter =new FirebaseRecyclerAdapter<Data, ViewHolder>(options) {
-//            @NonNull
-//            @Override
-//            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                View view = LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.item_budget, parent, false);
-//                Log.d("Budget_Fra", "ViewHolder onCreateViewHolder");
-//                return new ViewHolder(view);
-//            }
-//
-//            @Override
-//            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Data model) {
-//                // Bind data to the ViewHolder
-//                holder.setCat(model.getCategory()); // Assuming you have a getCat method in your Data class
-//                holder.setAmount(model.getAmount()); // Assuming you have a getAmount method in your Data class
-//                Log.d("YourAdapter", "onBindViewHolder called for position: " + position);
-//                Log.d("YourAdapter", "Data for this position - Category: " + model.getCategory() + ", Amount: " + model.getAmount());
-//            }
-//        };
-
-
-        Log.d("budget_Fra", "FirebaseRecyclerAdapter created");
         adapter.startListening();
         recyclerView.setAdapter(adapter);
-
-        if (recyclerView.getAdapter() != null) {
-            Log.d("Budget_Fra", "Adapter is set to the RecyclerView"+ recyclerView.getAdapter());
-            Log.d("Budget_Fra", "Adapter "+ adapter);
-        } else {
-            Log.d("Budget_Fra", "Adapter is not set to the RecyclerView"+recyclerView.getAdapter());
-        }
-
-
 
     }
 
@@ -167,6 +122,7 @@ public class budget_Fra extends Fragment {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;
+
         }
 
         private void setCat(String cat) {
@@ -182,12 +138,10 @@ public class budget_Fra extends Fragment {
 
     }
 
-
-    ////
     public void onStop() {
         super.onStop();
         if (adapter != null) {
-            adapter.stopListening(); // Stop listening when the fragment is no longer visible.
+            adapter.stopListening();
         }
     }
 

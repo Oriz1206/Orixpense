@@ -26,7 +26,7 @@ import java.util.Date;
 public class budget_create extends AppCompatActivity {
 
     private EditText bamount;
-    private EditText bdes;
+    private EditText bcat;
     private Button btn_bsave;
     private Button btn_bcancle;
 
@@ -56,7 +56,7 @@ public class budget_create extends AppCompatActivity {
     public void transferdata(){
 
         bamount = findViewById(R.id.amount_budget);
-        bdes = findViewById(R.id.cat_addbudget);
+        bcat = findViewById(R.id.cat_addbudget);
         btn_bsave = findViewById(R.id.btn_save_addbudget);
         btn_bcancle = findViewById(R.id.btn_cancle_addBudget);
         bamount.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -67,20 +67,20 @@ public class budget_create extends AppCompatActivity {
             public void onClick(View view) {
 
                 String amount = bamount.getText().toString().trim();
-                String description = bdes.getText().toString().trim();
+                String category = bcat.getText().toString().trim();
 
                 if (TextUtils.isEmpty(amount)){
                     bamount.setError("Required Field!");
                     return;
                 }
                 int amountInt = Integer.parseInt(amount);
-                if (TextUtils.isEmpty(description)){
-                    bdes.setError("Required Field!");
+                if (TextUtils.isEmpty(category)){
+                    bcat.setError("Required Field!");
                     return;
                 }
                 String id = BudgetDB.push().getKey();
                 String Date = DateFormat.getDateInstance().format(new Date());
-                Data data = new Data(amountInt,id,null,description,Date);
+                Data data = new Data(amountInt,id,category,null,Date);
 
                 BudgetDB.child(id).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

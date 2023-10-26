@@ -4,8 +4,8 @@
 
     <application
         android:allowBackup="true"
-        android:enableOnBackInvokedCallback="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,87 +14,77 @@
         android:theme="@style/Theme.Orixpense"
         tools:targetApi="31">
         <activity
+            android:name=".expense_edit"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity
+            android:name=".income_edit"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity
             android:name=".budget_edit"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".budget_detail"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".budget_create"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
-
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".detail_transfer"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".detail_income"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".detail_expense"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".new_transfer"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".new_income"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".New_Expense"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".reset_pass"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".forgot_pass_emailsent"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".ForgotPass"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".nav"
             android:exported="false"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".onboarding_2_Activity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".Onboarding_signup_Activity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat"
-            />
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".Onboarding_login_Activity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat"
-            />
-
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".OnboardActivity"
             android:exported="true"

@@ -22,24 +22,26 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:gravity="center"
             />
-        <Button
-            android:id="@+id/btn_back_detailTRANS"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+        <TextView
+            android:id="@+id/btn_back_detail_budget"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
             android:clipToOutline="true"
-            android:background="@color/white"
+            android:background="@drawable/arrow_top_back_icon"
             android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/black"
 
             />
 
         <TextView
-            android:id="@+id/btn_delete_detailTRANS"
+            android:id="@+id/btn_delete_detail_budget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clipToOutline="true"
-            android:background="@drawable/trash"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
+            android:background="@drawable/trash"
+            android:clipToOutline="true"
 
 
             />
@@ -57,25 +59,22 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             >
+
             <RelativeLayout
-                android:layout_width="124dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
                 >
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    app:srcCompat="@drawable/shopping" />
+
                 <TextView
+                    android:id="@+id/detail_cat_budget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shopping"
+                    android:layout_centerVertical="true"
                     android:fontFamily="@font/interbold"
+                    android:text="Shopping"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
 
                     />
             </RelativeLayout>

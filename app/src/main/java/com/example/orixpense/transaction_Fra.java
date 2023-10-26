@@ -1,6 +1,7 @@
 package com.example.orixpense;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.orixpense.Model.Data;
@@ -35,8 +37,14 @@ public class transaction_Fra extends Fragment {
     private FirebaseAuth mAuth;
     private DatabaseReference mIncomeDB;
     private DatabaseReference mExpenseDB;
-    private RecyclerView recyclerView;
-    private FirebaseRecyclerAdapter<Data, ViewHolder> adapter;
+    private RecyclerView irecyclerView;
+    private RecyclerView erecyclerView;
+    private FirebaseRecyclerAdapter<Data, ViewHolder> iadapter;
+    private FirebaseRecyclerAdapter<Data, ViewHolder> eadapter;
+
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,50 +61,128 @@ public class transaction_Fra extends Fragment {
 
         mIncomeDB = FirebaseDatabase.getInstance().getReference().child("Income").child(uid);
         mExpenseDB = FirebaseDatabase.getInstance().getReference().child("Expense").child(uid);
-        recyclerView = view.findViewById(R.id.recycler_trans);
+        irecyclerView = view.findViewById(R.id.recycler_trans_INC);
+        erecyclerView = view.findViewById(R.id.recycler_trans_EXP);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager iLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager eLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
-        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>()
+        iLayoutManager.setReverseLayout(true);
+        iLayoutManager.setStackFromEnd(true);
+
+        eLayoutManager.setReverseLayout(true);
+        eLayoutManager.setStackFromEnd(true);
+        irecyclerView.setHasFixedSize(true);
+        irecyclerView.setLayoutManager(iLayoutManager);
+        erecyclerView.setHasFixedSize(true);
+        erecyclerView.setLayoutManager(eLayoutManager);
+
+        FirebaseRecyclerOptions<Data> ioptions = new FirebaseRecyclerOptions.Builder<Data>()
                 .setQuery(mIncomeDB, Data.class)
                 .build();
 
-        adapter = new FirebaseRecyclerAdapter<Data, ViewHolder>(options) {
+        FirebaseRecyclerOptions<Data> eoptions = new FirebaseRecyclerOptions.Builder<Data>()
+                .setQuery(mExpenseDB, Data.class)
+                .build();
+
+
+        iadapter = new FirebaseRecyclerAdapter<Data, ViewHolder>(ioptions) {
             @Override
             protected void onBindViewHolder(ViewHolder viewHolder, int position, Data model) {
-                viewHolder.setCat(model.getCategory());
-                viewHolder.setDes(model.getDescription());
-                viewHolder.setAmount(model.getAmount());
-                viewHolder.setDate(model.getDate());
+                viewHolder.setiCat(model.getCategory());
+                viewHolder.setiDes(model.getDescription());
+                viewHolder.setiAmount(model.getAmount());
+                viewHolder.setiDate(model.getDate());
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), detail_income.class);
+                        intent.putExtra("income_id", getRef(position).getKey());
+                        startActivity(intent);
+                    }
+                });
+                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        DatabaseReference itemRef = getRef(position); // Lấy reference của khoản thu nhập
+                        itemRef.removeValue(); // Xóa khoản thu nhập từ Firebase
+                        return true;
+                    }
+                });
+
             }
 
             @NonNull
             @Override
             public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_transaction, parent, false);
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.income_recy_item, parent, false);
                 return new ViewHolder(itemView);
             }
         };
-        recyclerView.setAdapter(adapter);
+        eadapter = new FirebaseRecyclerAdapter<Data, ViewHolder>(eoptions) {
+            @Override
+            protected void onBindViewHolder(ViewHolder viewHolder, int position, Data model) {
+                viewHolder.seteCat(model.getCategory());
+                viewHolder.seteDes(model.getDescription());
+                viewHolder.seteAmount(model.getAmount());
+                viewHolder.seteDate(model.getDate());
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), detail_expense.class);
+                        intent.putExtra("expense_id", getRef(position).getKey());
+                        startActivity(intent);
+                    }
+                });
+                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        DatabaseReference itemRef = getRef(position); // Lấy reference của khoản thu chi
+                        itemRef.removeValue(); // Xóa khoản thu chi từ Firebase
+                        return true;
+                    }
+                });
 
+            }
+
+            @NonNull
+            @Override
+            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expense_recy_item, parent, false);
+                return new ViewHolder(itemView);
+            }
+        };
+
+
+
+        irecyclerView.setAdapter(iadapter);
+        erecyclerView.setAdapter(eadapter);
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
-        Log.d("FirebaseData", "Adapter started listening");
+
+        if (iadapter != null) {
+            iadapter.startListening();
+        }
+        if (eadapter != null) {
+            eadapter.startListening();
+        }
+
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+        if (iadapter != null) {
+            iadapter.stopListening();
+        }
+        if (eadapter != null) {
+            eadapter.stopListening();
+        }
     }
 
 
@@ -109,31 +195,50 @@ public class transaction_Fra extends Fragment {
             mView = itemView;
         }
 
-        private void setCat(String cat) {
-            TextView tCat = mView.findViewById(R.id.cat_show);
-            tCat.setText(cat);
+        private void setiCat(String icat) {
+            TextView tiCat = mView.findViewById(R.id.cat_show_iINC);
+            tiCat.setText(icat);
         }
 
-        private void setDes(String des) {
-            TextView tDes = mView.findViewById(R.id.des_show);
-            tDes.setText(des);
+        private void setiDes(String ides) {
+            TextView tiDes = mView.findViewById(R.id.des_show_INC);
+            tiDes.setText(ides);
         }
 
-        private void setAmount(int amount) {
-            TextView tAmount = mView.findViewById(R.id.show);
-            String strAmount = String.valueOf(amount);
-            if (amount >= 0) {
-                tAmount.setTextColor(ContextCompat.getColor(mView.getContext(), R.color.green));
-                tAmount.setText("+$" + String.valueOf(amount));
-            } else {
-                tAmount.setTextColor(ContextCompat.getColor(mView.getContext(), R.color.red));
-                tAmount.setText("-$" + String.valueOf(-amount));
-            }
+        private void setiAmount(int iamount) {
+            TextView tiAmount = mView.findViewById(R.id.show_iINC);
+            String strAmount = String.valueOf(iamount);
+            tiAmount.setText("+$"+strAmount);
+
         }
 
-        private void setDate(String date) {
-            TextView tDate = mView.findViewById(R.id.date_show);
-            tDate.setText(date);
+        private void setiDate(String idate) {
+            TextView tiDate = mView.findViewById(R.id.date_show_iINC);
+            tiDate.setText(idate);
         }
+
+        private void seteCat(String ecat) {
+            TextView teCat = mView.findViewById(R.id.cat_show_iEXP);
+            teCat.setText(ecat);
+        }
+
+        private void seteDes(String edes) {
+            TextView teDes = mView.findViewById(R.id.des_show_EXP);
+            teDes.setText(edes);
+        }
+
+        private void seteAmount(int eamount) {
+            TextView teAmount = mView.findViewById(R.id.show_iEXP);
+            String strAmount = String.valueOf(eamount);
+            teAmount.setText("-$"+strAmount);
+
+        }
+
+        private void seteDate(String edate) {
+            TextView teDate = mView.findViewById(R.id.date_show_iEXP);
+            teDate.setText(edate);
+        }
+
+
     }
 }

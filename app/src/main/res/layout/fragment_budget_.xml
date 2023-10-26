@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/budgetFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".budget_Fra"
@@ -16,7 +17,7 @@
             android:id="@+id/budget_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="June"
+            android:text="Budget"
             android:textColor="@color/white"
             android:fontFamily="@font/intersemibold"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -46,13 +47,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:background="@color/white"
         >
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/view_budget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             tools:listitem="@layout/item_budget"
             />
     </LinearLayout>
