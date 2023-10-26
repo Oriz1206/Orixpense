@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Onboarding_signup_Activity extends AppCompatActivity {
 
@@ -60,13 +62,19 @@ public class Onboarding_signup_Activity extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     email_signup.setError("Email is required!");
+                    return;
+                } else if (!isEmailValid(email)) {
+                    email_signup.setError("A valid email is required!");
                     return;
                 }
 
-                if (TextUtils.isEmpty(pass)){
+                if (TextUtils.isEmpty(pass)) {
                     pass_signup.setError("Password is required!");
+                    return;
+                } else if (pass.length() < 6) {
+                    pass_signup.setError("Password must be at least 6 characters");
                     return;
                 }
                 signup_dialog.setMessage("Processing...");
@@ -76,6 +84,13 @@ public class Onboarding_signup_Activity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             signup_dialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Signup complete",Toast.LENGTH_SHORT).show();
+                            String username = name_signup.getText().toString().trim();
+
+                            String userId = signup_auth.getCurrentUser().getUid();
+
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+                            databaseReference.child(userId).child("username").setValue(username);
+
                             startActivity(new Intent(getApplicationContext(),Onboarding_login_Activity.class));
                         }else{
                             signup_dialog.dismiss();
@@ -90,6 +105,9 @@ public class Onboarding_signup_Activity extends AppCompatActivity {
         btn_back_signup.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),onboarding_2_Activity.class)));
 
     }
-
+    private boolean isEmailValid(String email) {
+        // Đây là một kiểm tra đơn giản cho email hợp lệ. Bạn có thể sử dụng biểu thức chính quy mạnh hơn.
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 
 }

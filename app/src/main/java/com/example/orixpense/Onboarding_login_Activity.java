@@ -54,13 +54,19 @@ public class Onboarding_login_Activity extends AppCompatActivity {
                 String email = email_login.getText().toString().trim();
                 String pass= pass_login.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     email_login.setError("Email is required!");
+                    return;
+                } else if (!isEmailValid(email)) {
+                    email_login.setError("A valid email is required!");
                     return;
                 }
 
-                if (TextUtils.isEmpty(pass)){
+                if (TextUtils.isEmpty(pass)) {
                     pass_login.setError("Password is required!");
+                    return;
+                } else if (pass.length() < 6) {
+                    pass_login.setError("Password must be at least 6 characters");
                     return;
                 }
                 login_auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -85,4 +91,11 @@ public class Onboarding_login_Activity extends AppCompatActivity {
 
 
 
-    }}
+    }
+
+    private boolean isEmailValid(String email) {
+        // Đây là một kiểm tra đơn giản cho email hợp lệ. Bạn có thể sử dụng biểu thức chính quy mạnh hơn.
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+}

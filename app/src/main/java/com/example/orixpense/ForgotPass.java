@@ -3,6 +3,8 @@ package com.example.orixpense;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,12 +16,14 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class ForgotPass extends AppCompatActivity {
 
     private EditText fEmail;
     private Button Fcontinue;
     private FirebaseAuth F_pass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +47,62 @@ public class ForgotPass extends AppCompatActivity {
                     return;
                 }
 
-                F_pass.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                Fcontinue.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            startActivity(new Intent(getApplicationContext(),forgot_pass_emailsent.class));
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Email sent fail!",Toast.LENGTH_SHORT).show();
+                    public void onClick(View view) {
+                        String email = fEmail.getText().toString().trim();
+                        if (TextUtils.isEmpty(email)){
+                            fEmail.setError("Email is required!");
+                            return;
                         }
+
+                        // Kiểm tra xem email đã được sử dụng để đăng ký tài khoản chưa
+                        F_pass.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                                if (task.isSuccessful()) {
+                                    SignInMethodQueryResult result = task.getResult();
+                                    if (result.getSignInMethods() == null || result.getSignInMethods().isEmpty()) {
+                                        // Email chưa được sử dụng để đăng ký tài khoản
+                                        showSignUpDialog();
+                                    } else {
+                                        // Email đã được sử dụng để đăng ký tài khoản
+                                        F_pass.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    startActivity(new Intent(getApplicationContext(), forgot_pass_emailsent.class));
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), "Email sent fail!", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
                 });
+
             }
         });
 
+    }
+
+    private void showSignUpDialog() {
+        // Hiển thị thông báo và hỏi người dùng có muốn đăng ký tài khoản không
+        new AlertDialog.Builder(this)
+                .setTitle("Account Not Found")
+                .setMessage("There is no account associated with this email address. Do you want to sign up?")
+                .setPositiveButton("Sign Up", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Chuyển sang màn hình đăng ký tài khoản
+                        startActivity(new Intent(getApplicationContext(), Onboarding_signup_Activity.class));
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }

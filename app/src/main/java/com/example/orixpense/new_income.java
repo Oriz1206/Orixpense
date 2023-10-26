@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.orixpense.Model.Data;
@@ -31,6 +33,7 @@ public class new_income extends AppCompatActivity {
 
     private FirebaseAuth iAuth;
     private DatabaseReference IncomeDB;
+    private TextView btn_back_addINC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,13 @@ public class new_income extends AppCompatActivity {
         FirebaseUser iUser= iAuth.getCurrentUser();
         String uid=iUser.getUid();
         IncomeDB= FirebaseDatabase.getInstance().getReference().child("Income").child(uid);
+        btn_back_addINC = findViewById(R.id.btn_back_addINC);
+        btn_back_addINC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void incomedata(){
@@ -49,6 +59,8 @@ public class new_income extends AppCompatActivity {
         ides = findViewById(R.id.des_addINC);
         btn_isave = findViewById(R.id.btn_save_addINC);
         btn_icancle = findViewById(R.id.btn_cancle_addINC);
+        iamount = findViewById(R.id.add_amount_INC);
+        iamount.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         btn_isave.setOnClickListener(new View.OnClickListener() {
             @Override

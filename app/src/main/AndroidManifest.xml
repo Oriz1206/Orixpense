@@ -14,11 +14,6 @@
         android:theme="@style/Theme.Orixpense"
         tools:targetApi="31">
         <activity
-            android:name=".profile"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            />
-        <activity
             android:name=".budget_edit"
             android:exported="false"
             android:theme="@style/Theme.AppCompat"

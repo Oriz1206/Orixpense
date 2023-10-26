@@ -4,10 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.orixpense.Model.Data;
@@ -28,6 +32,8 @@ public class New_Expense extends AppCompatActivity {
     private EditText edes;
     private Button btn_esave;
     private Button btn_ecancle;
+    private TextView btn_back_addEXP;
+
 
     private FirebaseAuth eAuth;
     private DatabaseReference ExpneseDB;
@@ -40,6 +46,14 @@ public class New_Expense extends AppCompatActivity {
         FirebaseUser iUser= eAuth.getCurrentUser();
         String uid=iUser.getUid();
         ExpneseDB= FirebaseDatabase.getInstance().getReference().child("Expense").child(uid);
+
+        btn_back_addEXP = findViewById(R.id.btn_back_addEXP);
+        btn_back_addEXP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Đóng màn hình hiện tại và quay lại màn hình trước
+            }
+        });
     }
 
     public void expnesedata(){
@@ -48,6 +62,7 @@ public class New_Expense extends AppCompatActivity {
         edes = findViewById(R.id.des_addEXP);
         btn_esave = findViewById(R.id.btn_save_addEXP);
         btn_ecancle = findViewById(R.id.btn_cancle_addEXP);
+        eamount.setInputType(InputType.TYPE_CLASS_NUMBER);
 
 
         btn_esave.setOnClickListener(new View.OnClickListener() {

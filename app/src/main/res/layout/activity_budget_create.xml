@@ -22,13 +22,13 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:gravity="center"
             />
-        <Button
-            android:id="@+id/btn_back_addINC"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+        <TextView
+            android:id="@+id/btn_back_addbudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/arrow_top_back_icon"
             android:clipToOutline="true"
-            android:background="@color/blue"
-            android:layout_marginLeft="20dp"
 
             />
     </RelativeLayout>
@@ -58,6 +58,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="77dp"
+            android:inputType="number"
             />
 
     </RelativeLayout>

@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.orixpense.Model.Data;
@@ -30,6 +32,8 @@ public class budget_create extends AppCompatActivity {
 
     private FirebaseAuth tAuth;
     private DatabaseReference BudgetDB;
+    private TextView btn_back_addbudget;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,13 @@ public class budget_create extends AppCompatActivity {
         FirebaseUser iUser= tAuth.getCurrentUser();
         String uid=iUser.getUid();
         BudgetDB= FirebaseDatabase.getInstance().getReference().child("Budget").child(uid);
+        btn_back_addbudget = findViewById(R.id.btn_back_addbudget);
+        btn_back_addbudget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void transferdata(){
@@ -48,6 +59,7 @@ public class budget_create extends AppCompatActivity {
         bdes = findViewById(R.id.cat_addbudget);
         btn_bsave = findViewById(R.id.btn_save_addbudget);
         btn_bcancle = findViewById(R.id.btn_cancle_addBudget);
+        bamount.setInputType(InputType.TYPE_CLASS_NUMBER);
 
 
         btn_bsave.setOnClickListener(new View.OnClickListener() {
