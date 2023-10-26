@@ -52,8 +52,9 @@ public class budget_Fra extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        String uid = "7HfvCXWJsOfn6uGhe5VDKdohPIm2";
+        String uid = user.getUid();
         BudgetDB = FirebaseDatabase.getInstance().getReference().child("Budget").child(uid);
+
         recyclerView = view.findViewById(R.id.view_budget);
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),LinearLayoutManager.VERTICAL,false));
@@ -71,32 +72,6 @@ public class budget_Fra extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), budget_create.class);
                 startActivity(intent);
-            }
-        });
-        return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d("budget_Fra", "onStart called");
-
-        BudgetDB.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    dataReceived = true;
-                    Log.d("Budget_Fra", "Dữ liệu đã được nhận từ Firebase" + String.valueOf(dataSnapshot));
-                } else {
-                    dataReceived = false;
-                    Log.d("Budget_Fra", "Dữ liệu không được nhận từ Firebase");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                dataReceived = false;
-                Log.d("Budget_Fra", "Dữ liệu không được nhận từ Firebase");
             }
         });
 
@@ -121,6 +96,54 @@ public class budget_Fra extends Fragment {
                 Log.d("YourAdapter", "Data for this position - Category: " + model.getCategory() + ", Amount: " + model.getAmount());
             }
         };
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+//
+        BudgetDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    dataReceived = true;
+                    Log.d("Budget_Fra", "Dữ liệu đã được nhận từ Firebase" + String.valueOf(dataSnapshot));
+                } else {
+                    dataReceived = false;
+                    Log.d("Budget_Fra", "Dữ liệu không được nhận từ Firebase");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                dataReceived = false;
+                Log.d("Budget_Fra", "Dữ liệu không được nhận từ Firebase");
+            }
+        });
+
+//        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>().setQuery(BudgetDB, Data.class).build();
+//
+//        adapter =new FirebaseRecyclerAdapter<Data, ViewHolder>(options) {
+//            @NonNull
+//            @Override
+//            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext())
+//                        .inflate(R.layout.item_budget, parent, false);
+//                Log.d("Budget_Fra", "ViewHolder onCreateViewHolder");
+//                return new ViewHolder(view);
+//            }
+//
+//            @Override
+//            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Data model) {
+//                // Bind data to the ViewHolder
+//                holder.setCat(model.getCategory()); // Assuming you have a getCat method in your Data class
+//                holder.setAmount(model.getAmount()); // Assuming you have a getAmount method in your Data class
+//                Log.d("YourAdapter", "onBindViewHolder called for position: " + position);
+//                Log.d("YourAdapter", "Data for this position - Category: " + model.getCategory() + ", Amount: " + model.getAmount());
+//            }
+//        };
 
 
         Log.d("budget_Fra", "FirebaseRecyclerAdapter created");
