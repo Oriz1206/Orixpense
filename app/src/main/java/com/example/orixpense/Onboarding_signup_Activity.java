@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,7 +31,7 @@ public class Onboarding_signup_Activity extends AppCompatActivity {
     private TextView btn_back_signup;
     private ProgressDialog signup_dialog;
 
-    //firebase
+    // Firebase
     private FirebaseAuth signup_auth;
 
     @Override
@@ -42,7 +43,7 @@ public class Onboarding_signup_Activity extends AppCompatActivity {
         signup();
     }
 
-    protected void signup(){
+    protected void signup() {
         name_signup = findViewById(R.id.name_signup);
         email_signup = findViewById(R.id.email_signup);
         pass_signup = findViewById(R.id.pass_signup);
@@ -55,9 +56,9 @@ public class Onboarding_signup_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = name_signup.getText().toString().trim();
                 String email = email_signup.getText().toString().trim();
-                String pass= pass_signup.getText().toString().trim();
+                String pass = pass_signup.getText().toString().trim();
 
-                if (TextUtils.isEmpty(name)){
+                if (TextUtils.isEmpty(name)) {
                     name_signup.setError("Username is required!");
                     return;
                 }
@@ -77,37 +78,41 @@ public class Onboarding_signup_Activity extends AppCompatActivity {
                     pass_signup.setError("Password must be at least 6 characters");
                     return;
                 }
+
                 signup_dialog.setMessage("Processing...");
-                signup_auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                signup_auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             signup_dialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Signup complete",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Signup complete", Toast.LENGTH_SHORT).show();
                             String username = name_signup.getText().toString().trim();
 
-                            String userId = signup_auth.getCurrentUser().getUid();
-
-                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-                            databaseReference.child(userId).child("username").setValue(username);
-
-                            startActivity(new Intent(getApplicationContext(),Onboarding_login_Activity.class));
-                        }else{
+                            startActivity(new Intent(getApplicationContext(), Onboarding_login_Activity.class));
+                        } else {
                             signup_dialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Signup fail!",Toast.LENGTH_SHORT).show();
+                            if (task.getException() != null) {
+                                if (task.getException() instanceof FirebaseAuthInvalidUserException) {
+                                    // Email đã tồn tại, chuyển đến trang đăng nhập
+                                    Toast.makeText(getApplicationContext(), "Account already exists. Please login!", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), Onboarding_login_Activity.class));
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Signup fail: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Signup fail!", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
             }
         });
 
-        have_acc.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),Onboarding_login_Activity.class)));
-        btn_back_signup.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),onboarding_2_Activity.class)));
-
+        have_acc.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), Onboarding_login_Activity.class)));
+        btn_back_signup.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), onboarding_2_Activity.class)));
     }
+
     private boolean isEmailValid(String email) {
-        // Đây là một kiểm tra đơn giản cho email hợp lệ. Bạn có thể sử dụng biểu thức chính quy mạnh hơn.
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
-
 }

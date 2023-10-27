@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +24,7 @@ public class ForgotPass extends AppCompatActivity {
     private EditText fEmail;
     private Button Fcontinue;
     private FirebaseAuth F_pass;
+    private TextView btn_back;
 
 
     @Override
@@ -36,6 +38,14 @@ public class ForgotPass extends AppCompatActivity {
     protected void fogotpass(){
         fEmail = findViewById(R.id.sent_email);
         Fcontinue = findViewById(R.id.btn_continue_forgotP);
+        btn_back = findViewById(R.id.btn_back_fogot);
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         Fcontinue.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +54,9 @@ public class ForgotPass extends AppCompatActivity {
                 String email = fEmail.getText().toString().trim();
                 if (TextUtils.isEmpty(email)){
                     fEmail.setError("Email is required!");
+                    return;
+                }else if (!isEmailValid(email)) {
+                    fEmail.setError("A valid email is required!");
                     return;
                 }
 
@@ -89,6 +102,11 @@ public class ForgotPass extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean isEmailValid(String email) {
+        // Đây là một kiểm tra đơn giản cho email hợp lệ. Bạn có thể sử dụng biểu thức chính quy mạnh hơn.
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private void showSignUpDialog() {
