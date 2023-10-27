@@ -105,6 +105,7 @@ public class nav extends AppCompatActivity {
         btn_ft_EXP.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),New_Expense.class)));
 
 
+
         homeFra = new home_Fra();
         transactionFra = new transaction_Fra();
         budgetFra = new budget_Fra();
@@ -118,11 +119,12 @@ public class nav extends AppCompatActivity {
                 if (itemId == R.id.home_nav) {
                     setFragment(homeFra);
                     btn_ft_main.setVisibility(View.VISIBLE);
-                    btn_ft_INC.setVisibility(View.VISIBLE);
-                    btn_ft_EXP.setVisibility(View.VISIBLE);
+                    btn_ft_INC.setVisibility(View.INVISIBLE);
+                    btn_ft_EXP.setVisibility(View.INVISIBLE);
 
-                    ft_INC.setVisibility(View.VISIBLE);
-                    ft_EXP.setVisibility(View.VISIBLE);
+                    ft_INC.setVisibility(View.INVISIBLE);
+                    ft_EXP.setVisibility(View.INVISIBLE);
+
 
 
                     return true;

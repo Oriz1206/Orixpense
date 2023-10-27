@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.orixpense.Model.Data;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,22 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link home_Fra#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class home_Fra extends Fragment {
-
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    //total
     private TextView totalIncome;
     private TextView totalExpense;
     private TextView balance;
@@ -46,28 +36,21 @@ public class home_Fra extends Fragment {
     private int INC;
     private int EXP;
 
+    private TextView B_EXP;
+    private TextView B_INC;
+    private TextView Des_EXP;
+    private TextView Des_INC;
+    private TextView Cat_EXP;
+    private TextView Cat_INC;
+    private TextView Date_EXP;
+    private TextView Date_INC;
+
+
     public home_Fra() {
         // Required empty public constructor
     }
 
 
-    public static home_Fra newInstance(String param1, String param2) {
-        home_Fra fragment = new home_Fra();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +60,24 @@ public class home_Fra extends Fragment {
         totalExpense = view.findViewById(R.id.home_EXP);
         balance = view.findViewById(R.id.Balance);
         btn_see_all = view.findViewById(R.id.see_all_trans);
+        B_EXP = view.findViewById(R.id.home_iEXP);
+        Des_EXP= view.findViewById(R.id.des_home_iEXP);
+        Cat_EXP= view.findViewById(R.id.cat_home_iEXP);
+        Date_EXP= view.findViewById(R.id.date_home_iEXP);
+        B_INC = view.findViewById(R.id.home_iINC);
+        Des_INC= view.findViewById(R.id.des_home_iINC);
+        Cat_INC= view.findViewById(R.id.cat_home_iINC);
+        Date_INC= view.findViewById(R.id.date_home_iINC);
+//        NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.bottom_nav);
+//        NavController navController = navHostFragment.getNavController();
+
+//        btn_see_all.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Chuyển đến fragment_transaction khi nút "See All" được nhấn
+//                navController.navigate(R.id.transaction_nav);
+//            }
+//        });
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -125,6 +126,48 @@ public class home_Fra extends Fragment {
             }
         });
 
+        mIncomeDB.orderByChild("date").limitToLast(1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot : snapshot.getChildren()){
+                    Data data = childSnapshot.getValue(Data.class);
+                    if (data != null) {
+                        // Update your UI elements with the latest income data
+                        B_INC.setText("$" + data.getAmount());
+                        Des_INC.setText(data.getDescription());
+                        Cat_INC.setText(data.getCategory());
+                        Date_INC.setText(data.getDate());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        mExpenseDB.orderByChild("date").limitToLast(1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot : snapshot.getChildren()){
+                    Data data = childSnapshot.getValue(Data.class);
+                    if (data != null) {
+                        B_EXP.setText("$" + data.getAmount());
+                        Des_EXP.setText(data.getDescription());
+                        Cat_EXP.setText(data.getCategory());
+                        Date_EXP.setText(data.getDate());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
 

@@ -30,6 +30,7 @@
             android:clipToOutline="true"
             android:background="@drawable/arrow_back"
             android:layout_marginLeft="20dp"
+            android:visibility="gone"
 
             />
 
@@ -41,6 +42,8 @@
             android:background="@drawable/arrow_next"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
+            android:visibility="gone"
+
 
             />
     </RelativeLayout>

@@ -5,16 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.orixpense.Model.Data;
@@ -22,15 +19,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class transaction_Fra extends Fragment {
 
@@ -41,10 +31,6 @@ public class transaction_Fra extends Fragment {
     private RecyclerView erecyclerView;
     private FirebaseRecyclerAdapter<Data, ViewHolder> iadapter;
     private FirebaseRecyclerAdapter<Data, ViewHolder> eadapter;
-
-
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +55,6 @@ public class transaction_Fra extends Fragment {
 
         iLayoutManager.setReverseLayout(true);
         iLayoutManager.setStackFromEnd(true);
-
         eLayoutManager.setReverseLayout(true);
         eLayoutManager.setStackFromEnd(true);
         irecyclerView.setHasFixedSize(true);
@@ -85,7 +70,6 @@ public class transaction_Fra extends Fragment {
                 .setQuery(mExpenseDB, Data.class)
                 .build();
 
-
         iadapter = new FirebaseRecyclerAdapter<Data, ViewHolder>(ioptions) {
             @Override
             protected void onBindViewHolder(ViewHolder viewHolder, int position, Data model) {
@@ -93,23 +77,26 @@ public class transaction_Fra extends Fragment {
                 viewHolder.setiDes(model.getDescription());
                 viewHolder.setiAmount(model.getAmount());
                 viewHolder.setiDate(model.getDate());
+
+                final int adapterPosition = position;
+
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getActivity(), detail_income.class);
-                        intent.putExtra("income_id", getRef(position).getKey());
+                        intent.putExtra("income_id", getRef(adapterPosition).getKey());
                         startActivity(intent);
                     }
                 });
-                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        DatabaseReference itemRef = getRef(position); // Lấy reference của khoản thu nhập
-                        itemRef.removeValue(); // Xóa khoản thu nhập từ Firebase
-                        return true;
-                    }
-                });
 
+//                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+//                    @Override
+//                    public boolean onLongClick(View view) {
+//                        DatabaseReference itemRef = getRef(adapterPosition); // Lấy reference của khoản thu nhập
+//                        itemRef.removeValue(); // Xóa khoản thu nhập từ Firebase
+//                        return true;
+//                    }
+//                });
             }
 
             @NonNull
@@ -119,6 +106,7 @@ public class transaction_Fra extends Fragment {
                 return new ViewHolder(itemView);
             }
         };
+
         eadapter = new FirebaseRecyclerAdapter<Data, ViewHolder>(eoptions) {
             @Override
             protected void onBindViewHolder(ViewHolder viewHolder, int position, Data model) {
@@ -126,23 +114,26 @@ public class transaction_Fra extends Fragment {
                 viewHolder.seteDes(model.getDescription());
                 viewHolder.seteAmount(model.getAmount());
                 viewHolder.seteDate(model.getDate());
+
+                final int adapterPosition = position;
+
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getActivity(), detail_expense.class);
-                        intent.putExtra("expense_id", getRef(position).getKey());
+                        intent.putExtra("expense_id", getRef(adapterPosition).getKey());
                         startActivity(intent);
                     }
                 });
-                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        DatabaseReference itemRef = getRef(position); // Lấy reference của khoản thu chi
-                        itemRef.removeValue(); // Xóa khoản thu chi từ Firebase
-                        return true;
-                    }
-                });
 
+//                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+//                    @Override
+//                    public boolean onLongClick(View view) {
+//                        DatabaseReference itemRef = getRef(adapterPosition); // Lấy reference của khoản thu chi
+//                        itemRef.removeValue(); // Xóa khoản thu chi từ Firebase
+//                        return true;
+//                    }
+//                });
             }
 
             @NonNull
@@ -152,8 +143,6 @@ public class transaction_Fra extends Fragment {
                 return new ViewHolder(itemView);
             }
         };
-
-
 
         irecyclerView.setAdapter(iadapter);
         erecyclerView.setAdapter(eadapter);
@@ -170,8 +159,6 @@ public class transaction_Fra extends Fragment {
         if (eadapter != null) {
             eadapter.startListening();
         }
-
-
     }
 
     @Override
@@ -184,7 +171,6 @@ public class transaction_Fra extends Fragment {
             eadapter.stopListening();
         }
     }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -208,8 +194,7 @@ public class transaction_Fra extends Fragment {
         private void setiAmount(int iamount) {
             TextView tiAmount = mView.findViewById(R.id.show_iINC);
             String strAmount = String.valueOf(iamount);
-            tiAmount.setText("+$"+strAmount);
-
+            tiAmount.setText("+$" + strAmount);
         }
 
         private void setiDate(String idate) {
@@ -230,15 +215,12 @@ public class transaction_Fra extends Fragment {
         private void seteAmount(int eamount) {
             TextView teAmount = mView.findViewById(R.id.show_iEXP);
             String strAmount = String.valueOf(eamount);
-            teAmount.setText("-$"+strAmount);
-
+            teAmount.setText("-$" + strAmount);
         }
 
         private void seteDate(String edate) {
             TextView teDate = mView.findViewById(R.id.date_show_iEXP);
             teDate.setText(edate);
         }
-
-
     }
 }

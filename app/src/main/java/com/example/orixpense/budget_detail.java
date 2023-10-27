@@ -39,12 +39,11 @@ public class budget_detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_detail);
 
-        // Nhận ID của ngân sách từ Intent
         budgetId = getIntent().getStringExtra("budget_id");
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
-        // Khởi tạo DatabaseReference cho ngân sách cụ thể
+
         budgetRef = FirebaseDatabase.getInstance().getReference().child("Budget").child(uid).child(budgetId);
         btn_back_budget = findViewById(R.id.btn_back_detail_budget);
         btn_back_budget.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +54,6 @@ public class budget_detail extends AppCompatActivity {
         });
 
 
-        // Kết nối các thành phần giao diện
         detailCatBudget = findViewById(R.id.detail_cat_budget);
         detailBudget = findViewById(R.id.detail_budget);
         btnEditBudget = findViewById(R.id.btn_edit_budget);
@@ -83,10 +81,9 @@ public class budget_detail extends AppCompatActivity {
                     btnDeleteBudget.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // Tạo một hộp thoại xác nhận xóa
                             AlertDialog.Builder builder = new AlertDialog.Builder(budget_detail.this);
-                            builder.setMessage("Bạn có chắc chắn muốn xóa ngân sách này?");
-                            builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                            builder.setMessage("Are you sure you want to delete this budget?");
+                            builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     budgetRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -94,14 +91,16 @@ public class budget_detail extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 finish();
+                                                Toast.makeText(budget_detail.this, "Budget deleted", Toast.LENGTH_SHORT).show();
+
                                             } else {
-                                                makeText(budget_detail.this, "", Toast.LENGTH_SHORT).show();makeText(budget_detail.this, "Lỗi khi xóa ngân sách", Toast.LENGTH_SHORT).show();
+                                                makeText(budget_detail.this, "Failed to delete budget", Toast.LENGTH_SHORT).show();makeText(budget_detail.this, "Lỗi khi xóa ngân sách", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
                                 }
                             });
-                            builder.setNegativeButton("Hủy", null);
+                            builder.setNegativeButton("Cancel", null);
                             builder.show();
                         }
                     });

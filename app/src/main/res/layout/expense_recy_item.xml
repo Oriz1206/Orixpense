@@ -12,29 +12,29 @@
         android:background="@color/white"
         android:padding="5dp"
         >
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/trans_box"
-            >
+            android:background="@drawable/trans_box">
 
             <RelativeLayout
                 android:id="@+id/item_trans_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/home_inc_exp_icon"
-                android:layout_marginLeft="16dp"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/home_inc_exp_icon"
                 android:gravity="center"
 
                 >
+
                 <View
                     android:id="@+id/item_trans_icon"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:background="@drawable/expense_home_icon"
-                    android:backgroundTint="@color/red"
-                    />
+                    android:backgroundTint="@color/red" />
 
 
             </RelativeLayout>
@@ -43,65 +43,60 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="86dp"
-                >
+                android:layout_marginLeft="86dp">
+
                 <TextView
                     android:id="@+id/cat_show_iEXP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category"
                     android:fontFamily="@font/intersemibold"
-                    android:textSize="19dp"
+                    android:text="Category"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="19dp" />
 
                 <TextView
                     android:id="@+id/des_show_EXP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:fontFamily="@font/intermedium"
-                    android:textColor="@color/gray"
                     android:layout_below="@+id/cat_show_iEXP"
                     android:layout_marginTop="7dp"
-                    />
+                    android:fontFamily="@font/intermedium"
+                    android:text="Description"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/gray" />
             </RelativeLayout>
 
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                >
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp">
+
                 <TextView
                     android:id="@+id/show_iEXP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/intersemibold"
                     android:text="-$0"
                     android:textColor="@color/red"
-                    android:fontFamily="@font/intersemibold"
-                    android:textSize="19dp"
-                    />
+                    android:textSize="19dp" />
+
                 <TextView
                     android:id="@+id/date_show_iEXP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:fontFamily="@font/intermedium"
-                    android:textColor="@color/gray"
                     android:layout_below="@+id/show_iEXP"
                     android:layout_marginTop="7dp"
-                    />
+                    android:fontFamily="@font/intermedium"
+                    android:text="Date"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/gray" />
             </RelativeLayout>
 
 
-
         </RelativeLayout>
-
 
 
     </LinearLayout>

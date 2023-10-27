@@ -4,16 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".transaction_Fra"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    >
+
+    <TextView
+        android:id="@+id/budget_date"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="All Transaction"
+        android:textColor="@color/white"
+        android:fontFamily="@font/intersemibold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:gravity="center"
+        android:background="@color/blue"
+        />
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="90dp"
 
         >
-
         <TextView
             android:id="@+id/trans_show_EXP"
             android:layout_width="48dp"
@@ -36,48 +49,47 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_trans_EXP"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="160dp"
         android:scrollbars="vertical"
-        tools:listitem="@layout/item_transaction">
+        tools:listitem="@layout/expense_recy_item">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="370dp"
-
+        android:layout_marginTop="420dp"
         >
         <TextView
             android:id="@+id/trans_show_INC"
             android:layout_width="48dp"
             android:layout_height="56dp"
-            android:background="@drawable/income_home_icon"
-            android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
-            />
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/income_home_icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Income:"
-            android:textSize="23dp"
-            android:textColor="@color/green"
             android:layout_marginLeft="75dp"
-            android:fontFamily="@font/intermedium"
             android:layout_marginTop="25dp"
-            />
+            android:fontFamily="@font/intermedium"
+            android:text="Income:"
+            android:textColor="@color/green"
+            android:textSize="23dp" />
     </RelativeLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recycler_trans_INC"
-        android:layout_height="260dp"
-        android:layout_marginTop="440dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="490dp"
         android:scrollbars="vertical"
-        tools:listitem="@layout/item_transaction"
+        tools:listitem="@layout/income_recy_item"
 
         >
 
